@@ -78,10 +78,16 @@ export default function App() {
     toastTimer.current = setTimeout(() => setToast({ show: false, message: '', type: 'success' }), 3500)
   }, [])
 
+  function getOrigin() {
+    if (typeof window !== 'undefined') return window.location.origin
+    return ''
+  }
+
   function getSelectedImageUrl() {
     if (imageType === 'none') return ''
     if (imageSource === 'custom') return customImageUrl.trim() || 'https://via.placeholder.com/150'
-    return imageType === 'avatar' ? 'avatar.png' : 'logo.png'
+    const o = getOrigin()
+    return imageType === 'avatar' ? `${o}/avatar.png` : `${o}/logo.png`
   }
 
   function getImageAlt() {
@@ -345,7 +351,7 @@ export default function App() {
                     <label>Font Size Scale</label>
                     <select value={fontSizeScale} onChange={e => setFontSizeScale(e.target.value)}>
                       <option value="small">Small</option>
-                      <option value="medium" selected>Medium</option>
+                      <option value="medium">Medium</option>
                       <option value="large">Large</option>
                     </select>
                   </div>
