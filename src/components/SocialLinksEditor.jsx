@@ -9,28 +9,37 @@ const platformOptions = [
   { value: 'custom', label: 'Custom Link', icon: 'link' },
 ]
 
+const platformPlaceholders = {
+  linkedin: 'linkedin.com/in/username',
+  twitter: 'x.com/username',
+  github: 'github.com/username',
+  facebook: 'facebook.com/username',
+  instagram: 'instagram.com/username',
+  youtube: 'youtube.com/c/channelname',
+  website: 'https://your-website.com',
+  custom: 'https://your-link.com/...',
+}
+
 export default function SocialLinksEditor({ links, onChange, onRemove, onAdd }) {
   return (
     <div className="social-links-editor">
-      {links.map((link, index) => (
-        <div className="social-link-row" key={index}>
+      {links.map(link => (
+        <div className="social-link-row" key={link.id}>
           <div className="social-link-platform">
-            <select value={link.platform} onChange={e => onChange(index, 'platform', e.target.value)}>
+            <select value={link.platform} onChange={e => onChange(link.id, 'platform', e.target.value)}>
               {platformOptions.map(p => <option key={p.value} value={p.value}>{p.label}</option>)}
             </select>
           </div>
           <div className="social-link-input">
-            <input type="text" value={link.value} placeholder={
-              link.platform === 'custom' ? 'https://your-link.com/...' : link.platform === 'website' ? 'https://your-website.com' : platformOptions.find(p => p.value === link.platform)?.label?.toLowerCase() + '.com/username'
-            } onChange={e => onChange(index, 'value', e.target.value)} />
+            <input type="text" value={link.value} placeholder={platformPlaceholders[link.platform] || 'https://...'} onChange={e => onChange(link.id, 'value', e.target.value)} />
           </div>
           {link.platform === 'custom' || link.platform === 'website' ? (
             <div className="social-link-label">
-              <input type="text" value={link.label} placeholder={link.platform === 'website' ? 'Website' : 'Custom'} onChange={e => onChange(index, 'label', e.target.value)} />
+              <input type="text" value={link.label} placeholder={link.platform === 'website' ? 'Website' : 'Custom'} onChange={e => onChange(link.id, 'label', e.target.value)} />
             </div>
           ) : null}
           <div className="social-link-actions">
-            <button className="btn-icon btn-remove" title="Remove" onClick={() => onRemove(index)}>
+            <button className="btn-icon btn-remove" title="Remove" aria-label="Remove social link" onClick={() => onRemove(link.id)}>
               <i data-lucide="trash-2"></i>
             </button>
           </div>

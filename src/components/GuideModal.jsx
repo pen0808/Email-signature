@@ -1,10 +1,10 @@
 const guides = [
-  {
-    id: 'guide-gmail',
-    name: 'Gmail',
-    icon: 'mail',
-    steps: [
-      { title: 'Step 1: Copy Your Signature', desc: 'Click the "Copy Rich Format" button in the preview panel above to copy your signature to your clipboard. (Or "Copy HTML" in step 6.)' },
+    {
+      id: 'guide-gmail',
+      name: 'Gmail',
+      icon: 'mail',
+      steps: [
+        { title: 'Step 1: Copy Your Signature', desc: 'Click the "Copy Rich Format" button in the preview panel above to copy your signature to your clipboard.' },
       { title: 'Step 2: Open Gmail Settings', desc: 'Click the gear icon in the top right corner of Gmail and select "See all settings".' },
       { title: 'Step 3: Navigate to Signature', desc: 'Go to the "General" tab and scroll down to the "Signature" section.' },
       { title: 'Step 4: Create New Signature', desc: 'Click "Create new" and give it a name like "Work Signature".' },
@@ -13,10 +13,10 @@ const guides = [
       { title: 'If Formatting Breaks', desc: 'Alternatively, paste the raw HTML code in Gmail\'s "Insert HTML" feature (via "Insert" > "HTML" in some versions) or use browser extensions like "Signature Hider" or "GT".' },
     ],
   },
-  {
-    id: 'guide-outlook',
-    name: 'Outlook (Web)',
-    icon: 'mail',
+    {
+      id: 'guide-outlook',
+      name: 'Outlook (Web)',
+      icon: 'globe',
     steps: [
       { title: 'Step 1: Copy Your Signature', desc: 'Click the "Copy Rich Format" button above.' },
       { title: 'Step 2: Open Outlook Settings', desc: 'Click the gear icon and select "View all Outlook settings" at the bottom.' },
@@ -26,10 +26,10 @@ const guides = [
       { title: 'Step 6: Save Settings', desc: 'Click "Save" at the top. Make sure to select your new signature for "New messages" and "Replies/forwards".' },
     ],
   },
-  {
-    id: 'guide-outlook-desktop',
-    name: 'Outlook (Desktop)',
-    icon: 'mail',
+    {
+      id: 'guide-outlook-desktop',
+      name: 'Outlook (Desktop)',
+      icon: 'monitor',
     steps: [
       { title: 'Step 1: Copy Your Signature', desc: 'Click the "Copy Rich Format" button above.' },
       { title: 'Step 2: Open Outlook Options', desc: 'Go to "File" > "Options" > "Mail" > "Signatures..."' },
@@ -38,10 +38,10 @@ const guides = [
       { title: 'Step 5: Apply & Close', desc: 'Click "OK" to apply and close the dialog.' },
     ],
   },
-  {
-    id: 'guide-apple',
-    name: 'Apple Mail',
-    icon: 'mail',
+    {
+      id: 'guide-apple',
+      name: 'Apple Mail',
+      icon: 'apple',
     steps: [
       { title: 'Step 1: Copy Raw HTML', desc: 'Click "Copy HTML" above to copy the raw source code.' },
       { title: 'Step 2: Open Mail Preferences', desc: 'Open Apple Mail, go to "Mail" > "Preferences" > "Signatures".' },
@@ -50,10 +50,10 @@ const guides = [
       { title: 'Alternative Method', desc: 'Use an app like "MailSignature" for Mac or "Signature" for iOS to manage HTML signatures easily.' },
     ],
   },
-  {
-    id: 'guide-yahoo',
-    name: 'Yahoo Mail',
-    icon: 'mail',
+    {
+      id: 'guide-yahoo',
+      name: 'Yahoo Mail',
+      icon: 'at-sign',
     steps: [
       { title: 'Step 1: Copy Your Signature', desc: 'Click the "Copy Rich Format" button above.' },
       { title: 'Step 2: Open Yahoo Settings', desc: 'Click the gear icon and select "More Settings".' },
@@ -85,7 +85,7 @@ export default function GuideModal({ open, onClose, activeTab, onTabChange }) {
       <div className="modal-container guide-modal" onClick={e => e.stopPropagation()}>
         <div className="modal-header">
           <h2><i data-lucide="book-open"></i> Installation Guide</h2>
-          <button className="modal-close" onClick={onClose}><i data-lucide="x"></i></button>
+          <button className="modal-close" onClick={onClose} aria-label="Close modal"><i data-lucide="x"></i></button>
         </div>
         <div className="modal-body">
           <div className="guide-tabs">

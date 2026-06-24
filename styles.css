@@ -865,7 +865,6 @@ body {
   .color-input-wrapper { flex-direction: column; }
   .color-input-wrapper input[type="color"] { width: 100%; height: 40px; }
   .color-preset-btn { width: 26px; height: 26px; }
-  .client-subject { font-size: 0.72rem; }
 }
 
 /* Small phones: 320-480px */

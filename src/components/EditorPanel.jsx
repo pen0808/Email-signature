@@ -7,6 +7,11 @@ export default function EditorPanel({
   socialLinks, handleSocialChange, removeSocialLink, addSocialLink, fieldVisibility, toggleField,
   personalFieldVisibility, togglePersonalField,
 }) {
+  const displayImageOptions = [
+    { value: 'avatar', label: 'Profile Photo (Avatar)' },
+    { value: 'logo', label: 'Company Logo' },
+    { value: 'none', label: 'No Image' },
+  ]
   const visibilityFields = [
     { key: 'phone', label: 'Phone Number', icon: 'phone' },
     { key: 'mobile', label: 'Mobile Number', icon: 'smartphone' },
@@ -91,9 +96,7 @@ export default function EditorPanel({
           <div className="form-group">
             <label>Display Image</label>
             <select value={imageType} onChange={e => setImageType(e.target.value)}>
-              <option value="avatar">Profile Photo (Avatar)</option>
-              <option value="logo">Company Logo</option>
-              <option value="none">No Image</option>
+              {displayImageOptions.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
             </select>
           </div>
           {imageType !== 'none' && (

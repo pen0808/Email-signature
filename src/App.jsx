@@ -4,15 +4,8 @@ import EditorPanel from './components/EditorPanel'
 import PreviewPanel from './components/PreviewPanel'
 import GuideModal from './components/GuideModal'
 
-const PLACEHOLDER = {
-  linkedin: 'linkedin.com/in/username',
-  twitter: 'twitter.com/username',
-  github: 'github.com/username',
-  facebook: 'facebook.com/username',
-  instagram: 'instagram.com/username',
-  youtube: 'youtube.com/c/channelname',
-  website: 'www.company.com',
-}
+let socialIdCounter = 0
+function nextSocialId() { return ++socialIdCounter }
 
 function getBorderRadius(shape) {
   if (shape === 'round') return '50%'
@@ -26,6 +19,11 @@ function getImageContainerStyle(w) {
 
 function getResponsiveImageStyle(w, r) {
   return `border-radius: ${r}; display: block; width: ${w}px; max-width: 100%; height: ${w}px; object-fit: cover; object-position: center; border: 0; outline: none; text-decoration: none;`
+}
+
+function esc(str) {
+  if (typeof str !== 'string') return ''
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;')
 }
 
 export default function App() {
@@ -58,9 +56,9 @@ export default function App() {
   const [personalFieldVisibility, setPersonalFieldVisibility] = useState({ department: true, company: true })
 
   const [socialLinks, setSocialLinks] = useState([
-    { platform: 'linkedin', value: 'linkedin.com/in/alexander-wright', label: '' },
-    { platform: 'twitter', value: 'twitter.com/alexwright', label: '' },
-    { platform: 'github', value: 'github.com/alexwright', label: '' },
+    { id: nextSocialId(), platform: 'linkedin', value: 'linkedin.com/in/alexander-wright', label: '' },
+    { id: nextSocialId(), platform: 'twitter', value: 'twitter.com/alexwright', label: '' },
+    { id: nextSocialId(), platform: 'github', value: 'github.com/alexwright', label: '' },
   ])
 
   const [activeTab, setActiveTab] = useState('tab-content')
@@ -77,6 +75,8 @@ export default function App() {
     setToast({ show: true, message, type })
     toastTimer.current = setTimeout(() => setToast({ show: false, message: '', type: 'success' }), 3500)
   }, [])
+
+  useEffect(() => () => { if (toastTimer.current) clearTimeout(toastTimer.current) }, [])
 
   function getOrigin() {
     if (typeof window !== 'undefined') return window.location.origin
@@ -95,10 +95,16 @@ export default function App() {
   }
 
   const buildSignatureMarkup = useCallback(() => {
-    const safeName = name || 'Alexander Wright'
-    const safeJobTitle = jobTitle || 'Principal Software Architect'
-    const safeDepartment = department || 'Engineering & Innovation'
-    const safeCompany = company || 'Pen Technology Group'
+    const safeName = esc(name) || 'Alexander Wright'
+    const safeJobTitle = esc(jobTitle) || 'Principal Software Architect'
+    const safeDepartment = esc(department) || 'Engineering &amp; Innovation'
+    const safeCompany = esc(company) || 'Pen Technology Group'
+    const safeEmail = esc(email)
+    const safePhone = esc(phone)
+    const safeMobile = esc(mobile)
+    const safeWebsite = esc(website)
+    const safeAddress = esc(address)
+    const safeDisclaimer = esc(disclaimerText)
 
     const imgUrl = getSelectedImageUrl()
     const borderRadius = getBorderRadius(avatarShape)
@@ -110,14 +116,15 @@ export default function App() {
     else if (fontSizeScale === 'large') { sizeName = 18; sizeSub = 14; sizeDetails = 13; sizeDisclaimer = 11 }
 
     let detailsList = []
-    if (phone && fieldVisibility.phone) detailsList.push(`<span style="color:${activeAccentColor};font-weight:bold;">T:</span> <span style="color:${activeSecondaryColor};">${phone}</span>`)
-    if (mobile && fieldVisibility.mobile) detailsList.push(`<span style="color:${activeAccentColor};font-weight:bold;">M:</span> <span style="color:${activeSecondaryColor};">${mobile}</span>`)
-    if (email && fieldVisibility.email) detailsList.push(`<span style="color:${activeAccentColor};font-weight:bold;">E:</span> <a href="mailto:${email}" style="color:${activeSecondaryColor};text-decoration:none;">${email}</a>`)
-    if (website && fieldVisibility.website) { const cu = website.startsWith('http') ? website : `https://${website}`; detailsList.push(`<span style="color:${activeAccentColor};font-weight:bold;">W:</span> <a href="${cu}" target="_blank" style="color:${activeSecondaryColor};text-decoration:none;">${website}</a>`) }
-    if (address && fieldVisibility.address) detailsList.push(`<span style="color:${activeAccentColor};font-weight:bold;">A:</span> <span style="color:${activeSecondaryColor};">${address}</span>`)
+    if (safePhone && fieldVisibility.phone) detailsList.push(`<span style="color:${activeAccentColor};font-weight:bold;">T:</span> <span style="color:${activeSecondaryColor};">${safePhone}</span>`)
+    if (safeMobile && fieldVisibility.mobile) detailsList.push(`<span style="color:${activeAccentColor};font-weight:bold;">M:</span> <span style="color:${activeSecondaryColor};">${safeMobile}</span>`)
+    if (safeEmail && fieldVisibility.email) detailsList.push(`<span style="color:${activeAccentColor};font-weight:bold;">E:</span> <a href="mailto:${safeEmail}" style="color:${activeSecondaryColor};text-decoration:none;">${safeEmail}</a>`)
+    if (safeWebsite && fieldVisibility.website) { const cu = safeWebsite.startsWith('http') ? safeWebsite : `https://${safeWebsite}`; detailsList.push(`<span style="color:${activeAccentColor};font-weight:bold;">W:</span> <a href="${cu}" target="_blank" style="color:${activeSecondaryColor};text-decoration:none;">${safeWebsite}</a>`) }
+    if (safeAddress && fieldVisibility.address) detailsList.push(`<span style="color:${activeAccentColor};font-weight:bold;">A:</span> <span style="color:${activeSecondaryColor};">${safeAddress}</span>`)
 
     let socialIcons = []
-    const baseIconStyle = 'display:inline-block;margin-right:10px;font-size:11px;text-decoration:none;font-weight:bold;'
+    const socialFontSize = sizeDetails
+    const baseIconStyle = `display:inline-block;margin-right:10px;font-size:${socialFontSize}px;text-decoration:none;font-weight:bold;`
     socialLinks.forEach(link => {
       if (link.value && link.value.trim()) {
         const val = link.value.trim()
@@ -125,7 +132,7 @@ export default function App() {
         let label = ''
         if (link.platform === 'custom' || link.platform === 'website') label = (link.label && link.label.trim()) || (link.platform === 'website' ? 'Website' : 'Link')
         else label = link.platform.charAt(0).toUpperCase() + link.platform.slice(1)
-        socialIcons.push(`<a href="${url}" target="_blank" style="${baseIconStyle}color:${activeAccentColor};">${label}</a>`)
+        socialIcons.push(`<a href="${url}" target="_blank" style="${baseIconStyle}color:${activeAccentColor};">${esc(label)}</a>`)
       }
     })
     const socialsHtml = socialIcons.length > 0 ? socialIcons.join('<span style="color:#e2e8f0;margin-right:10px;">|</span>') : ''
@@ -139,11 +146,12 @@ export default function App() {
     let detailsHtml = detailsList.length > 0 ? detailsList.join(' <span style="color:#cbd5e1;margin:0 4px;">&bull;</span> ') : ''
 
     let disclaimerHtml = ''
-    if (toggleDisclaimer && disclaimerText.trim()) {
-      disclaimerHtml = `<table cellpadding="0" cellspacing="0" border="0" style="margin-top:18px;width:100%;border-top:1px solid #e2e8f0;padding-top:8px;"><tr><td style="font-size:${sizeDisclaimer}px;line-height:1.4;color:#94a3b8;font-style:italic;font-family:${font};text-align:justify;">${disclaimerText.trim()}</td></tr></table>`
+    if (toggleDisclaimer && safeDisclaimer.trim()) {
+      disclaimerHtml = `<table cellpadding="0" cellspacing="0" border="0" style="margin-top:18px;width:100%;border-top:1px solid #e2e8f0;padding-top:8px;"><tr><td style="font-size:${sizeDisclaimer}px;line-height:1.4;color:#94a3b8;font-style:italic;font-family:${font};text-align:justify;">${safeDisclaimer.trim()}</td></tr></table>`
     }
 
-    const imgTag = `<img src="${imgUrl}" width="${w}" alt="${getImageAlt()}" style="${getResponsiveImageStyle(w, borderRadius)}" />`
+    const imgAlt = esc(imageType === 'avatar' ? `${name || 'Contact'} photo` : 'Company logo')
+    const imgTag = `<img src="${imgUrl}" width="${w}" alt="${imgAlt}" style="${getResponsiveImageStyle(w, borderRadius)}" />`
     const imgTd = `<td style="padding-right:18px;${getImageContainerStyle(w)}">${imgTag}</td>`
 
     if (currentTemplate === 'classic') {
@@ -180,7 +188,8 @@ export default function App() {
   }, [buildSignatureMarkup])
 
   useEffect(() => { updatePreview() }, [updatePreview])
-  useEffect(() => { try { lucide.createIcons() } catch {} })
+  useEffect(() => { try { lucide.createIcons() } catch {} }, [activeTab])
+  useEffect(() => { return () => { if (toastTimer.current) clearTimeout(toastTimer.current) } }, [])
 
   function copySignatureToClipboard() {
     const rawHtml = buildSignatureMarkup()
@@ -188,6 +197,8 @@ export default function App() {
       const blobHtml = new Blob([rawHtml], { type: 'text/html' })
       const blobText = new Blob([rawHtml], { type: 'text/plain' })
       navigator.clipboard.write([new window.ClipboardItem({ 'text/html': blobHtml, 'text/plain': blobText })]).then(() => showToast('Signature copied as Rich Text! Ready to paste.')).catch(() => fallbackCopyRichText(rawHtml))
+    } else if (navigator.clipboard && navigator.clipboard.write) {
+      navigator.clipboard.writeText(rawHtml).then(() => showToast('Signature HTML copied! Paste into your email client.')).catch(() => fallbackCopyRichText(rawHtml))
     } else fallbackCopyRichText(rawHtml)
   }
 
@@ -216,23 +227,23 @@ export default function App() {
     document.body.removeChild(ta)
   }
 
-  function handleSocialChange(index, field, value) {
-    setSocialLinks(prev => {
-      const next = [...prev]
-      next[index] = { ...next[index], [field]: value }
-      if ((field === 'platform') && (value === 'custom' || value === 'website') && !next[index].label) {
-        next[index].label = value === 'website' ? 'Website' : 'Custom'
+  function handleSocialChange(id, field, value) {
+    setSocialLinks(prev => prev.map(link => {
+      if (link.id !== id) return link
+      const updated = { ...link, [field]: value }
+      if (field === 'platform' && (value === 'custom' || value === 'website') && !updated.label) {
+        updated.label = value === 'website' ? 'Website' : 'Custom'
       }
-      return next
-    })
+      return updated
+    }))
   }
 
-  function removeSocialLink(index) {
-    setSocialLinks(prev => prev.filter((_, i) => i !== index))
+  function removeSocialLink(id) {
+    setSocialLinks(prev => prev.filter(link => link.id !== id))
   }
 
   function addSocialLink() {
-    setSocialLinks(prev => [...prev, { platform: 'linkedin', value: '', label: '' }])
+    setSocialLinks(prev => [...prev, { id: nextSocialId(), platform: 'linkedin', value: '', label: '' }])
   }
 
   function toggleField(field) {
@@ -265,7 +276,7 @@ export default function App() {
                   email, setEmail, phone, setPhone, mobile, setMobile, website, setWebsite, address, setAddress,
                   imageType, setImageType, imageSource, setImageSource, customImageUrl, setCustomImageUrl,
                   socialLinks, handleSocialChange, removeSocialLink, addSocialLink, fieldVisibility, toggleField,
-                  personalFieldVisibility, togglePersonalField, activeTab }} />
+                  personalFieldVisibility, togglePersonalField }} />
             </div>
           </div>
 
