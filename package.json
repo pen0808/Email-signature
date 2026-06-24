@@ -1,0 +1,13 @@
+{
+  "name": "pensignature",
+  "version": "1.0.0",
+  "description": "Professional Email Signature Generator",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PenSignature | Professional Email Signature Generator</title>
+    <meta name="description" content="Generate beautiful, email-client-safe signatures with our professional, customizable tool.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <!-- Lucide Icons (CDN) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .logo-icon svg {
+            display: block;
+        }
+    </style>
+  <link rel="stylesheet" crossorigin href="/assets/index-BA13Q9WF.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Header -->
+        <header class="app-header">
+            <div class="logo-wrapper">
+                <div class="logo-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                        <path d="M15 5l4 4"/>
+                        <path d="M7.5 20.5l-3-3"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1>PenSignature</h1>
+                    <p class="subtitle">Professional Email Signature Builder</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-secondary btn-icon-text" id="btn-guide">
+                    <i data-lucide="help-circle"></i>
+                    <span>Installation Guide</span>
+                </button>
+            </div>
+        </header>
+
+        <main class="app-main">
+            <!-- Left Side: Editor Panel -->
+            <section class="editor-panel">
+                <div class="tab-navigation">
+                    <button class="tab-btn active" data-tab="tab-content">
+                        <i data-lucide="user-cog"></i>
+                        <span>Content</span>
+                    </button>
+                    <button class="tab-btn" data-tab="tab-templates">
+                        <i data-lucide="layout"></i>
+                        <span>Templates</span>
+                    </button>
+                    <button class="tab-btn" data-tab="tab-design">
+                        <i data-lucide="palette"></i>
+                        <span>Design</span>
+                    </button>
+                </div>
+
+                <div class="tab-content-container">
+                    <!-- TAB 1: CONTENT -->
+                    <div class="tab-pane active" id="tab-content">
+                        <!-- Personal Details -->
+                        <div class="form-section">
+                            <h3 class="section-title"><i data-lucide="user"></i> Personal Information</h3>
+                            <p class="section-desc">Full name and job title are always shown. Toggle Department and Company.</p>
+                            <div class="field-toggles" style="margin-bottom: 12px;">
+                                <label class="field-toggle disabled">
+                                    <input type="checkbox" checked disabled>
+                                    <span class="toggle-pill"></span>
+                                    <span class="toggle-label">Full Name</span>
+                                </label>
+                                <label class="field-toggle disabled">
+                                    <input type="checkbox" checked disabled>
+                                    <span class="toggle-pill"></span>
+                                    <span class="toggle-label">Job Title</span>
+                                </label>
+                                <label class="field-toggle" data-personal="department">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-pill"></span>
+                                    <span class="toggle-label">Department</span>
+                                </label>
+                                <label class="field-toggle" data-personal="company">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-pill"></span>
+                                    <span class="toggle-label">Company</span>
+                                </label>
+                            </div>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="input-name">Full Name</label>
+                                    <input type="text" id="input-name" placeholder="Alexander Wright" value="Alexander Wright">
+                                </div>
+                                <div class="form-group">
+                                    <label for="input-job-title">Job Title</label>
+                                    <input type="text" id="input-job-title" placeholder="Principal Software Architect" value="Principal Software Architect">
+                                </div>
+                                <div class="form-group">
+                                    <label for="input-department">Department</label>
+                                    <input type="text" id="input-department" placeholder="Engineering & Innovation" value="Engineering & Innovation">
+                                </div>
+                                <div class="form-group">
+                                    <label for="input-company">Company Name</label>
+                                    <input type="text" id="input-company" placeholder="Pen Technology Group" value="Pen Technology Group">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact Details -->
+                        <div class="form-section">
+                            <h3 class="section-title"><i data-lucide="phone"></i> Contact Details</h3>
+                            <p class="section-desc">Toggle which fields appear in your signature.</p>
+                            <div class="field-toggles">
+                                <label class="field-toggle" data-field="phone">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-pill"></span>
+                                    <span class="toggle-label">Phone</span>
+                                </label>
+                                <label class="field-toggle" data-field="mobile">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-pill"></span>
+                                    <span class="toggle-label">Mobile</span>
+                                </label>
+                                <label class="field-toggle" data-field="email">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-pill"></span>
+                                    <span class="toggle-label">Email</span>
+                                </label>
+                                <label class="field-toggle" data-field="website">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-pill"></span>
+                                    <span class="toggle-label">Website</span>
+                                </label>
+                                <label class="field-toggle" data-field="address">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-pill"></span>
+                                    <span class="toggle-label">Address</span>
+                                </label>
+                            </div>
+                            <div class="form-grid" style="margin-top: 12px;">
+                                <div class="form-group">
+                                    <label for="input-email">Email Address</label>
+                                    <input type="email" id="input-email" placeholder="a.wright@pengroup.com" value="a.wright@pengroup.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="input-phone">Phone Number (Work)</label>
+                                    <input type="text" id="input-phone" placeholder="+1 (555) 019-2834" value="+1 (555) 019-2834">
+                                </div>
+                                <div class="form-group">
+                                    <label for="input-mobile">Mobile Number</label>
+                                    <input type="text" id="input-mobile" placeholder="+1 (555) 019-5829" value="+1 (555) 019-5829">
+                                </div>
+                                <div class="form-group">
+                                    <label for="input-website">Website</label>
+                                    <input type="text" id="input-website" placeholder="www.pengroup.com" value="www.pengroup.com">
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="input-address">Address / Office Location</label>
+                                    <input type="text" id="input-address" placeholder="100 Pine St, Suite 2400, San Francisco, CA" value="100 Pine St, Suite 2400, San Francisco, CA">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Images / Logo -->
+                        <div class="form-section">
+                            <h3 class="section-title"><i data-lucide="image"></i> Profile Photo & Logo</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="select-image-type">Display Image</label>
+                                    <select id="select-image-type">
+                                        <option value="avatar" selected>Profile Photo (Avatar)</option>
+                                        <option value="logo">Company Logo</option>
+                                        <option value="none">No Image</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="select-image-source">Image Source</label>
+                                    <select id="select-image-source">
+                                        <option value="preset" selected>Preset (Demo Asset)</option>
+                                        <option value="custom">Custom URL</option>
+                                    </select>
+                                </div>
+                                <div class="form-group full-width" id="custom-image-url-group" style="display: none;">
+                                    <label for="input-image-url">Custom Image URL (HTTPS required)</label>
+                                    <input type="url" id="input-image-url" placeholder="https://example.com/my-photo.jpg">
+                                    <p class="input-helper">Please upload your image to a public host (e.g. Imgur, Dropbox, or company CDN) and paste the direct image link here.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social Media Links -->
+                        <div class="form-section">
+                            <h3 class="section-title"><i data-lucide="share-2"></i> Social Media Links</h3>
+                            <p class="section-desc">Add, remove, and customize as many social or external links as you need.</p>
+                            
+                            <div id="social-links-container" class="social-links-container">
+                                <!-- Dynamic social link rows will be rendered here -->
+                            </div>
+                            
+                            <button type="button" class="btn btn-secondary btn-icon-text" id="btn-add-social" style="width: 100%; margin-top: 12px; justify-content: center;">
+                                <i data-lucide="plus"></i>
+                                <span>Add Social Link</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: TEMPLATES -->
+                    <div class="tab-pane" id="tab-templates">
+                        <div class="form-section">
+                            <h3 class="section-title"><i data-lucide="layout"></i> Select Layout Template</h3>
+                            <p class="section-desc">Choose a pre-designed template. All templates are coded with strict table structures optimized for compatibility across email clients.</p>
+                            
+                            <div class="templates-grid">
+                                <!-- Template 1: Classic Split -->
+                                <div class="template-card active" data-template="classic">
+                                    <div class="template-card-preview">
+                                        <div class="dummy-layout classic-dummy">
+                                            <div class="dummy-circle"></div>
+                                            <div class="dummy-line-group">
+                                                <div class="dummy-line accent-line-w"></div>
+                                                <div class="dummy-line text-line-w"></div>
+                                                <div class="dummy-line info-line-w"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="template-card-info">
+                                        <h4>Classic Executive</h4>
+                                        <p>Left image with a vertical color divider and neat text blocks. Best for formal corporate use.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Template 2: Minimalist Compact -->
+                                <div class="template-card" data-template="minimalist">
+                                    <div class="template-card-preview">
+                                        <div class="dummy-layout minimalist-dummy">
+                                            <div class="dummy-line-group full-width">
+                                                <div class="dummy-line accent-line-w"></div>
+                                                <div class="dummy-line text-line-w"></div>
+                                                <div class="dummy-divider"></div>
+                                                <div class="dummy-line info-line-w"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="template-card-info">
+                                        <h4>Minimalist Clean</h4>
+                                        <p>Single column structure without images, clean layout spacing. Super safe & highly readable.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Template 3: Modern Card -->
+                                <div class="template-card" data-template="modern">
+                                    <div class="template-card-preview">
+                                        <div class="dummy-layout modern-dummy">
+                                            <div class="dummy-circle"></div>
+                                            <div class="dummy-line-group">
+                                                <div class="dummy-badge"></div>
+                                                <div class="dummy-line text-line-w"></div>
+                                                <div class="dummy-line info-line-w"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="template-card-info">
+                                        <h4>Modern Badge</h4>
+                                        <p>Clean double column with accent title banner style. Ideal for tech, startup, or design agencies.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Template 4: Left Border Ribbon -->
+                                <div class="template-card" data-template="ribbon">
+                                    <div class="template-card-preview">
+                                        <div class="dummy-layout ribbon-dummy">
+                                            <div class="dummy-vertical-ribbon"></div>
+                                            <div class="dummy-circle small"></div>
+                                            <div class="dummy-line-group">
+                                                <div class="dummy-line text-line-w"></div>
+                                                <div class="dummy-line info-line-w"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="template-card-info">
+                                        <h4>Left Accent Ribbon</h4>
+                                        <p>A thick colored left accent border running the height of the signature. Bold and modern.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 3: DESIGN -->
+                    <div class="tab-pane" id="tab-design">
+                        <!-- Theme Colors -->
+                        <div class="form-section">
+                            <h3 class="section-title"><i data-lucide="palette"></i> Design Theme Colors</h3>
+                            <p class="section-desc">Customize colors for your signature layout icons and text elements.</p>
+                            
+                            <div class="color-presets-wrapper">
+                                <label>Presets</label>
+                                <div class="color-presets">
+                                    <button class="color-preset-btn active" data-color="#2563eb" style="background-color: #2563eb;" title="Signature Blue"></button>
+                                    <button class="color-preset-btn" data-color="#059669" style="background-color: #059669;" title="Emerald Executive"></button>
+                                    <button class="color-preset-btn" data-color="#dc2626" style="background-color: #dc2626;" title="Crimson Corporate"></button>
+                                    <button class="color-preset-btn" data-color="#7c3aed" style="background-color: #7c3aed;" title="Royal Purple"></button>
+                                    <button class="color-preset-btn" data-color="#0ea5e9" style="background-color: #0ea5e9;" title="Cyan Startup"></button>
+                                    <button class="color-preset-btn" data-color="#e11d48" style="background-color: #e11d48;" title="Rose Tech"></button>
+                                    <button class="color-preset-btn" data-color="#4b5563" style="background-color: #4b5563;" title="Sleek Slate"></button>
+                                </div>
+                            </div>
+
+                            <div class="form-grid" style="margin-top: 15px;">
+                                <div class="form-group color-picker-group">
+                                    <label for="color-picker-accent">Custom Accent Color</label>
+                                    <div class="color-input-wrapper">
+                                        <input type="color" id="color-picker-accent" value="#2563eb">
+                                        <input type="text" id="color-picker-text-value" value="#2563eb" placeholder="#2563eb">
+                                    </div>
+                                </div>
+                                <div class="form-group color-picker-group">
+                                    <label for="color-picker-secondary">Secondary Text Color</label>
+                                    <div class="color-input-wrapper">
+                                        <input type="color" id="color-picker-secondary" value="#4b5563">
+                                        <input type="text" id="color-picker-secondary-text-value" value="#4b5563" placeholder="#4b5563">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Typography & Layout Details -->
+                        <div class="form-section">
+                            <h3 class="section-title"><i data-lucide="type"></i> Typography & Sizing</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="select-font">Font Family</label>
+                                    <select id="select-font">
+                                        <option value="Arial, Helvetica, sans-serif" selected>Arial (Standard Web-Safe)</option>
+                                        <option value="'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Segoe UI / Tahoma</option>
+                                        <option value="Georgia, serif">Georgia (Editorial)</option>
+                                        <option value="'Trebuchet MS', Helvetica, sans-serif">Trebuchet MS (Modern Serif)</option>
+                                        <option value="'Courier New', Courier, monospace">Courier New (Monospace)</option>
+                                    </select>
+                                    <p class="input-helper">Web-safe fonts are recommended to ensure consistent rendering in all clients.</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="select-font-size">Font Size Scale</label>
+                                    <select id="select-font-size">
+                                        <option value="small">Small</option>
+                                        <option value="medium" selected>Medium</option>
+                                        <option value="large">Large</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="select-avatar-shape">Avatar Picture Shape</label>
+                                    <select id="select-avatar-shape">
+                                        <option value="round" selected>Circular (Round)</option>
+                                        <option value="rounded">Soft Rounded Corners</option>
+                                        <option value="square">Sharp Square</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="select-image-width">Image Width (px)</label>
+                                    <input type="number" id="select-image-width" value="100" min="60" max="200" step="5">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Legal Disclaimer & Extra Details -->
+                        <div class="form-section">
+                            <h3 class="section-title"><i data-lucide="shield-alert"></i> Disclaimer & Footers</h3>
+                            <div class="form-grid">
+                                <div class="form-group full-width toggle-group">
+                                    <div class="toggle-control">
+                                        <input type="checkbox" id="toggle-disclaimer" checked>
+                                        <label for="toggle-disclaimer">Include Legal Disclaimer</label>
+                                    </div>
+                                </div>
+                                <div class="form-group full-width" id="disclaimer-text-group">
+                                    <label for="textarea-disclaimer">Disclaimer Text</label>
+                                    <textarea id="textarea-disclaimer" rows="3">IMPORTANT: The contents of this email message and any attachments are intended solely for the addressee(s) and may contain confidential and/or privileged information. If you are not the intended recipient, please notice sender and delete immediately.</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Side: Preview & Control Panel -->
+            <section class="preview-panel">
+                <div class="preview-card">
+                    <!-- Client Mockup Header -->
+                    <div class="client-header">
+                        <div class="client-actions">
+                            <span class="dot close"></span>
+                            <span class="dot minimize"></span>
+                            <span class="dot expand"></span>
+                        </div>
+                        <div class="client-subject">
+                            <span class="subject-label">Subject:</span>
+                            <span class="subject-text">New Email Signature Mockup</span>
+                        </div>
+                    </div>
+
+                    <!-- Sandbox Iframe Container for Email Rendering -->
+                    <div class="preview-sandbox">
+                        <iframe id="signature-preview-iframe" title="Signature Live Preview"></iframe>
+                    </div>
+
+                    <!-- Control Panel for Copy/Export -->
+                    <div class="preview-actions">
+                        <button class="btn btn-primary" id="btn-copy-rich">
+                            <i data-lucide="copy"></i>
+                            <span>Copy Signature</span>
+                        </button>
+                        <button class="btn btn-secondary" id="btn-copy-html">
+                            <i data-lucide="code"></i>
+                            <span>Copy HTML Code</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Live Notification Toast -->
+                <div id="toast-notification" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <i data-lucide="check-circle" class="toast-icon"></i>
+                    <span id="toast-message">Copied to clipboard!</span>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- GUIDE MODAL DIALOG -->
+    <div class="modal-overlay" id="guide-modal" style="display: none;">
+        <div class="modal-card">
+            <header class="modal-header">
+                <div class="modal-title-wrapper">
+                    <i data-lucide="book-open" class="icon-brand"></i>
+                    <h2>Installation Guide</h2>
+                </div>
+                <button class="modal-close" id="btn-modal-close">
+                    <i data-lucide="x"></i>
+                </button>
+            </header>
+            <div class="modal-body">
+                <div class="guide-tabs">
+                    <button class="guide-tab-btn active" data-guide="guide-gmail">Gmail</button>
+                    <button class="guide-tab-btn" data-guide="guide-outlook">Outlook Desktop</button>
+                    <button class="guide-tab-btn" data-guide="guide-apple">Apple Mail</button>
+                </div>
+
+                <div class="guide-content-container">
+                    <!-- GMAIL GUIDE -->
+                    <div class="guide-pane active" id="guide-gmail">
+                        <ol class="guide-steps">
+                            <li>Click the <strong>Copy Signature</strong> button on the preview dashboard to copy the formatted signature to your clipboard.</li>
+                            <li>Open your Gmail and click the gear icon in the top right, then select <strong>See all settings</strong>.</li>
+                            <li>Scroll down to the <strong>Signature</strong> section and click <strong>Create new</strong> (or select an existing signature).</li>
+                            <li>Click inside the signature text area and press <strong>Ctrl+V</strong> (or <strong>Cmd+V</strong> on Mac) to paste.</li>
+                            <li>Scroll to the bottom of the Gmail settings page and click <strong>Save Changes</strong>.</li>
+                        </ol>
+                        <div class="guide-alert warning">
+                            <i data-lucide="alert-triangle"></i>
+                            <p><strong>Note:</strong> Make sure "Signature defaults" are updated to apply the new signature to new emails and replies/forwards.</p>
+                        </div>
+                    </div>
+
+                    <!-- OUTLOOK GUIDE -->
+                    <div class="guide-pane" id="guide-outlook">
+                        <ol class="guide-steps">
+                            <li>Click the <strong>Copy Signature</strong> button on the preview dashboard.</li>
+                            <li>Open Outlook and click on <strong>File</strong> &gt; <strong>Options</strong> &gt; <strong>Mail</strong> &gt; <strong>Signatures...</strong>.</li>
+                            <li>Click <strong>New</strong> to create a new signature template, and give it a name.</li>
+                            <li>Click in the editor box and press <strong>Ctrl+V</strong> (or <strong>Cmd+V</strong>) to paste your signature.</li>
+                            <li>Select your new signature under the "Choose default signature" settings for your email account, then click <strong>OK</strong>.</li>
+                        </ol>
+                        <div class="guide-alert info">
+                            <i data-lucide="info"></i>
+                            <p>If some details shift, try pasting using the <strong>Keep Source Formatting</strong> option (which appears near the paste cursor in Outlook).</p>
+                        </div>
+                    </div>
+
+                    <!-- APPLE MAIL GUIDE -->
+                    <div class="guide-pane" id="guide-apple">
+                        <ol class="guide-steps">
+                            <li>Click the <strong>Copy Signature</strong> button to save the formatted signature.</li>
+                            <li>Open Mail on Mac and go to <strong>Mail</strong> &gt; <strong>Settings</strong> (or <strong>Preferences</strong>) &gt; <strong>Signatures</strong>.</li>
+                            <li>Select your email account and click the <strong>+</strong> button to add a new signature.</li>
+                            <li><strong>Uncheck</strong> the checkbox that says "Always match my default message font".</li>
+                            <li>Paste the signature into the text box using <strong>Cmd+V</strong>.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Script -->
+    <script src="script.js"></script>
+</body>
+</html>
