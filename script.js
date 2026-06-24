@@ -243,9 +243,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return customImageUrlInput.value.trim() || 'https://via.placeholder.com/150';
         }
         
-        // Preset local images (avatar.png / logo.png) with cache-busting for development
-        const ts = Date.now();
-        return type === 'avatar' ? `avatar.png?t=${ts}` : `logo.png?t=${ts}`;
+        // Preset local images (avatar.png / logo.png)
+        return type === 'avatar' ? 'avatar.png' : 'logo.png';
     }
 
     function getImageAlt() {
